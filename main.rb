@@ -48,7 +48,7 @@ class Logic
   def changes_possible_for?(bill)
     cd = cd_state
     splashed_array = cd.keys.map {|k| [k.to_i]*cd[k]}.flatten
-    if cd[bill.to_s] > 0 
+    if ((cd[bill.to_s]) && (cd[bill.to_s] > 0)) 
       true
     elsif subset_sum(splashed_array, bill).length > 0
       true
@@ -77,12 +77,14 @@ class Logic
   end
 
   def main_loop
+    #TODO: write loop
     puts "CURRENT STATUS"
     general_info
     print "TOTAL AMOUNT SHOULD BE PAID: \t"
-    amount = (gets.chomp).to_i
+    amount = gets.to_i
+    print amount
     puts "AVAILABLE INPUTS: 1, 5, 10, 20, 50, 100: \t"
-    inserted = (gets.chomp).to_i
+    inserted = gets.chomp.to_i
     hold inserted
     if able_to_accept?(amount, inserted) 
       stack inserted
