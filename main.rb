@@ -82,14 +82,19 @@ class Logic
     general_info
     print "TOTAL AMOUNT SHOULD BE PAID: \t"
     amount = gets.to_i
-    print amount
-    puts "AVAILABLE INPUTS: 1, 5, 10, 20, 50, 100: \t"
-    inserted = gets.chomp.to_i
-    hold inserted
-    if able_to_accept?(amount, inserted) 
-      stack inserted
-    else
-      reject inserted
+    to_be_paid = amount
+    while to_be_paid > 0
+      print "AVAILABLE INPUTS: 1, 5, 10, 20, 50, 100: \t"
+      inserted = gets.to_i
+      hold inserted
+      if able_to_accept?(amount, inserted) 
+        stack inserted
+        to_be_paid -= inserted
+        puts to_be_paid
+      else
+        reject inserted
+        puts to_be_paid
+      end
     end
   end
 end
